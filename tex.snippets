@@ -13,38 +13,43 @@ endglobal
 
 
 snippet template "Basic template" b
-\documentclass[a4paper]{article}
-
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
-\usepackage{textcomp}
-\usepackage[dutch]{babel}
+\documentclass{article}
 \usepackage{amsmath, amssymb}
-
-
-% figure support
+\usepackage{cite}
+\usepackage{natbib}
+\usepackage{graphicx}
+\usepackage[a4paper, total={6.5in, 8in}]{geometry}
+\usepackage{microtype}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\hypersetup{colorlinks,linkcolor={red!50!black},citecolor={blue!60!black},urlcolor={blue!0!black}}
+\usepackage{graphicx}
 \usepackage{import}
-\usepackage{xifthen}
-\pdfminorversion=7
-\usepackage{pdfpages}
+
+%\usepackage{xifthen}
+%\pdfminorversion=7
+%\usepackage{pdfpages}
 \usepackage{transparent}
-\newcommand{\incfig}[1]{%
-	\def\svgwidth{\columnwidth}
-	\import{./figures/}{#1.pdf_tex}
-}
+%\newcommand{\incfig}[1]{%
+%	\def\svgwidth{\columnwidth}
+%	\import{./figures/}{#1.pdf_tex}
+%}
 
 \pdfsuppresswarningpagegroup=1
 
+\title{$0}
+\author{Joseph Andrews}
 \begin{document}
-	$0
+\maketitle
+	
 \end{document}
 endsnippet
 
-snippet beg "begin{} / end{}" bA
-\\begin{$1}
-	$0
-\\end{$1}
-endsnippet
+#snippet beg "begin{} / end{}" bA
+#\\begin{$1}
+#	$0
+#\\end{$1}
+#endsnippet
 
 priority 100
 snippet ... "ldots" iA
@@ -116,9 +121,9 @@ else:
 endsnippet
 
 snippet dm "Math" wA
-\[
-${1:${VISUAL}}
-.\] $0
+\begin{equation}
+        ${1:${VISUAL}}
+\end{equation} $0
 endsnippet
 
 snippet ali "Align" bA
@@ -610,11 +615,11 @@ snippet "bar" "bar" riA
 \overline{$1}$0
 endsnippet
 
-priority 100
-context "math()"
-snippet "([a-zA-Z])bar" "bar" riA
-\overline{`!p snip.rv=match.group(1)`}
-endsnippet
+#priority 100
+#context "math()"
+#snippet "([a-zA-Z])bar" "bar" riA
+#\overline{`!p snip.rv=match.group(1)`}
+#endsnippet
 
 priority 10
 context "math()"
