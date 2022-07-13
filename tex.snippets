@@ -19,12 +19,14 @@ snippet template "Basic template" b
 \usepackage{natbib}
 \usepackage{graphicx}
 \usepackage[a4paper, total={6.5in, 8in}]{geometry}
-\usepackage{microtype}
+\usepackage[stretch=10]{microtype}
 \usepackage{graphicx}
+\usepackage{siunitx}
 \usepackage{hyperref}
 \hypersetup{colorlinks,linkcolor={red!50!black},citecolor={blue!60!black},urlcolor={blue!0!black}}
 \usepackage{graphicx}
-\usepackage{import}
+
+\graphicspath{ {./Images/} }
 
 %\usepackage{xifthen}
 %\pdfminorversion=7
@@ -82,7 +84,7 @@ snippet enum "Enumerate" bA
 \end{enumerate}
 endsnippet
 
-snippet item "Itemize" bA
+snippet item "Itemize" bi
 \begin{itemize}
 	\item $0
 \end{itemize}
@@ -123,6 +125,13 @@ endsnippet
 snippet dm "Math" wA
 \begin{equation}
         ${1:${VISUAL}}
+\end{equation} $0
+endsnippet
+
+snippet lm "Math" wA
+\begin{equation}
+        ${2:${VISUAL}}
+	\label{$1}
 \end{equation} $0
 endsnippet
 
@@ -173,6 +182,21 @@ snippet '([A-Za-z])_(\d\d)' "auto subscript2" wrA
 `!p snip.rv = match.group(1)`_{`!p snip.rv = match.group(2)`}
 endsnippet
 
+snippet "\<(.*?)\|" "bra" wri
+\bra{`!p snip.rv = match.group(1).replace('q', f'\psi').replace('f', f'\phi')`}
+endsnippet
+
+snippet "\|(.*?)\>" "ket" wri
+\ket{`!p snip.rv = match.group(1).replace('q', f'\psi').replace('f', f'\phi')`}
+endsnippet
+
+snippet "(.*)(?i)\\bra{(.*?)}([^\|]*?)\>" "Partial braket" Awri
+`!p snip.rv = match.group(1)`\braket{`!p snip.rv = match.group(2)`}{`!p snip.rv = match.group(3).replace('q', f'\psi').replace('f', f'\phi')`}
+endsnippet
+
+snippet "(.*)(?i)\\bra{(.*?)}(.*?)\|([^\|]*?)\>" "Full Bracket with middle" Awri
+`!p snip.rv = match.group(1)`\braket{`!p snip.rv = match.group(2)` | `!p snip.rv = match.group(3).replace('q', f'\psi').replace('f', f'\phi')` | `!p snip.rv = match.group(4).replace('q', f'\psi').replace('f', f'\phi')`}
+endsnippet
 
 snippet sympy "sympyblock " w
 sympy $1 sympy$0
@@ -513,9 +537,9 @@ snippet set "set" wA
 \\{$1\\} $0
 endsnippet
 
-snippet || "mid" iA
- \mid 
-endsnippet
+#snippet || "mid" iA
+# \mid 
+#endsnippet
 
 
 context "math()"
@@ -576,6 +600,13 @@ snippet <> "hokje" iA
 \diamond 
 endsnippet
 
+snippet bf "Bold" wi
+\textbf{${1:${VISUAL}}}$0
+endsnippet
+
+snippet it "Italic" wi
+\textit{${1:${VISUAL}}}$0
+endsnippet
 
 context "math()"
 snippet '(?<!i)sts' "text subscript" irA
@@ -646,4 +677,97 @@ snippet DD "D" iA
 \mathbb{D}
 endsnippet
 
+snippet ref "ref" wi
+\ref{${1:${VISUAL}}}$0
+endsnippet
+
 # vim:ft=snippets
+
+
+#########
+#Greek letters
+#########
+
+snippet lam "Sub Paragraph*" wi
+\lambda$1 $0
+endsnippet
+
+snippet del "Sub Paragraph*" wi
+\delta$1 $0
+endsnippet
+
+snippet sig "Sub Paragraph*" wi
+\sigma$1 $0
+endsnippet
+
+snippet mu "Sub Paragraph*" wi
+\mu$1 $0
+endsnippet
+
+snippet nu "Sub Paragraph*" wi
+\nu$1 $0
+endsnippet
+
+snippet gam "Sub Paragraph*" wi
+\gamma$1 $0
+endsnippet
+
+snippet alp "Sub Paragraph*" wi
+\alpha$1 $0
+endsnippet
+
+snippet bet "Sub Paragraph*" wi
+\beta$1 $0
+endsnippet
+
+snippet psi "Sub Paragraph*" wi
+\psi$1 $0
+endsnippet
+
+snippet phi "Sub Paragraph*" wi
+\phi$1 $0
+endsnippet
+#Capital greek letters
+
+
+
+snippet Lam "Sub Paragraph*" wi
+\Lambda$1 $0
+endsnippet
+
+snippet Del "Sub Paragraph*" wi
+\Delta$1 $0
+endsnippet
+
+snippet Sig "Sub Paragraph*" wi
+\Sigma$1 $0
+endsnippet
+
+snippet Mu "Sub Paragraph*" wi
+\Mu$1 $0
+endsnippet
+
+snippet Nu "Sub Paragraph*" wi
+\Nu$1 $0
+endsnippet
+
+snippet Gam "Sub Paragraph*" wi
+\Gamma$1 $0
+endsnippet
+
+snippet Alp "Sub Paragraph*" wi
+\Alpha$1 $0
+endsnippet
+
+snippet Bet "Sub Paragraph*" wi
+\Beta$1 $0
+endsnippet
+
+snippet Psi "Sub Paragraph*" wi
+\Psi$1 $0
+endsnippet
+
+snippet Phi "Sub Paragraph*" wi
+\Phi$1 $0
+endsnippet
+
