@@ -13,15 +13,17 @@ endglobal
 
 
 snippet template "Basic template" b
-\documentclass{article}
+\documentclass[11pt]{article}
 \usepackage{amsmath, amssymb}
 \usepackage{cite}
 \usepackage{natbib}
 \usepackage{graphicx}
-\usepackage[a4paper, total={6.5in, 8in}]{geometry}
+\usepackage[a4paper, total={6.2in, 8.5in}]{geometry}
 \usepackage[stretch=10]{microtype}
 \usepackage{graphicx}
 \usepackage{siunitx}
+\usepackage{xcolor}
+\usepackage{braket}
 \usepackage{hyperref}
 \hypersetup{colorlinks,linkcolor={red!50!black},citecolor={blue!60!black},urlcolor={blue!0!black}}
 \usepackage{graphicx}
@@ -198,6 +200,10 @@ snippet "(.*)(?i)\\bra{(.*?)}(.*?)\|([^\|]*?)\>" "Full Bracket with middle" Awri
 `!p snip.rv = match.group(1)`\braket{`!p snip.rv = match.group(2)` | `!p snip.rv = match.group(3).replace('q', f'\psi').replace('f', f'\phi')` | `!p snip.rv = match.group(4).replace('q', f'\psi').replace('f', f'\phi')`}
 endsnippet
 
+snippet "(.*)\<(.*?)\|(.*?)\|([^\|]*?)\>" "Braket that doesn't require a bra alerady" Awri
+`!p snip.rv = match.group(1)`\braket{`!p snip.rv = match.group(2).replace('q', f'\psi').replace('f', f'\phi')` | `!p snip.rv = match.group(3).replace('q', f'\psi').replace('f', f'\phi')` | `!p snip.rv = match.group(4).replace('q', f'\psi').replace('f', f'\phi')`}
+endsnippet
+
 snippet sympy "sympyblock " w
 sympy $1 sympy$0
 endsnippet
@@ -294,7 +300,7 @@ snippet conj "conjugate" iA
 endsnippet
 
 snippet sum "sum" w
-\sum_{n=${1:1}}^{${2:\infty}} ${3:a_n z^n}
+\sum_{i=${1:1}}^{${2:\infty}} ${3:a_i }
 endsnippet
 
 snippet taylor "taylor" w
@@ -315,6 +321,10 @@ endsnippet
 
 snippet part "d/dx" w
 \frac{\partial ${1:V}}{\partial ${2:x}} $0
+endsnippet
+
+snippet parts "d/dx" w
+\frac{\partial^2 ${1:V}}{\partial {${2:x}}^2} $0
 endsnippet
 
 context "math()"
@@ -382,6 +392,20 @@ snippet ynn "yn" iA
 y_{n}
 endsnippet
 
+context "math()"
+snippet rii "ri" iA
+r_{i}
+endsnippet
+
+context "math()"
+snippet rjj "rj" iA
+r_{j}
+endsnippet
+
+context "math()"
+snippet rij "rij" iA
+r_{ij}
+endsnippet
 
 context "math()"
 snippet xii "xi" iA
