@@ -204,6 +204,11 @@ snippet "(.*)\<(.*?)\|(.*?)\|([^\|]*?)\>" "Braket that doesn't require a bra ale
 `!p snip.rv = match.group(1)`\braket{`!p snip.rv = match.group(2).replace('q', f'\psi').replace('f', f'\phi')` | `!p snip.rv = match.group(3).replace('q', f'\psi').replace('f', f'\phi')` | `!p snip.rv = match.group(4).replace('q', f'\psi').replace('f', f'\phi')`}
 endsnippet
 
+context "math()"
+snippet '([A-Za-z])dag' "dagger" Awri
+`!p snip.rv = match.group(1)`^{\dag}
+endsnippet
+
 snippet sympy "sympyblock " w
 sympy $1 sympy$0
 endsnippet
@@ -319,17 +324,37 @@ snippet prod "product" w
 \prod_{${1:n=${2:1}}}^{${3:\infty}} ${4:${VISUAL}} $0
 endsnippet
 
+snippet dif "d/dx" w
+\frac{d ${1:}}{d ${2:}} $0
+endsnippet
+
+snippet difs "d/dx" w
+\frac{d^2 ${1:}}{d^2 ${2:}} $0
+endsnippet
+
 snippet part "d/dx" w
-\frac{\partial ${1:V}}{\partial ${2:x}} $0
+\frac{\partial ${1:}}{\partial ${2:}} $0
 endsnippet
 
 snippet parts "d/dx" w
-\frac{\partial^2 ${1:V}}{\partial {${2:x}}^2} $0
+\frac{\partial^2 ${1:}}{\partial {${2:}}^2} $0
 endsnippet
 
 context "math()"
 snippet sq "\sqrt{}" iA
 \sqrt{${1:${VISUAL}}} $0
+endsnippet
+
+# Atomic physics ones
+
+context "math()"
+snippet fr "Function of r" iA
+( r )$0
+endsnippet
+
+context "math()"
+snippet ter "Term with Lund notation atomic theory" iA
+\ {}^{$1}$0
 endsnippet
 
 context "math()"
@@ -751,6 +776,10 @@ endsnippet
 snippet phi "Sub Paragraph*" wi
 \phi$1 $0
 endsnippet
+
+snippet eps "Sub Paragraph*" wi
+\epsilon$1 $0
+endsnippet
 #Capital greek letters
 
 
@@ -795,3 +824,6 @@ snippet Phi "Sub Paragraph*" wi
 \Phi$1 $0
 endsnippet
 
+snippet Eps "Sub Paragraph*" wi
+\Epsilon$1 $0
+endsnippet
