@@ -30,16 +30,18 @@ snippet template "Basic template" b
 
 \graphicspath{ {./Images/} }
 
-%\usepackage{xifthen}
+\usepackage{import}
+\usepackage{xifthen}
 %\pdfminorversion=7
-%\usepackage{pdfpages}
+\usepackage{pdfpages}
 \usepackage{transparent}
-%\newcommand{\incfig}[1]{%
-%	\def\svgwidth{\columnwidth}
-%	\import{./figures/}{#1.pdf_tex}
-%}
+\newcommand{\incfig}[1]{%
+	\def\svgwidth{\columnwidth}
+	\import{./figures/}{#1.pdf_tex}
+}
 
 \pdfsuppresswarningpagegroup=1
+
 
 \title{$0}
 \author{Joseph Andrews}
@@ -76,7 +78,7 @@ snippet fig "Figure environment" b
 	\centering
 	${2:\includegraphics[width=0.8\textwidth]{$3}}
 	\caption{${4:$3}}
-	\label{fig:${5:${3/\W+/-/g}}}
+	\label{fig:${5:${3/\W+.*//g}}}
 \end{figure}
 endsnippet
 
@@ -246,6 +248,11 @@ endsnippet
 
 snippet != "equals" iA
 \neq 
+endsnippet
+
+context "math()"
+snippet pro "equals" iA
+\propto $0
 endsnippet
 
 context "math()"
@@ -649,6 +656,10 @@ snippet <> "hokje" iA
 \diamond 
 endsnippet
 
+snippet lab "Label" wi
+\label{$1:$2} $0
+endsnippet
+
 snippet bf "Bold" wi
 \textbf{${1:${VISUAL}}}$0
 endsnippet
@@ -705,6 +716,12 @@ priority 10
 context "math()"
 snippet "hat" "hat" riA
 \hat{$1}$0
+endsnippet
+
+priority 10
+context "math()"
+snippet "til" "hat" riA
+\tilde{$1}$0
 endsnippet
 
 priority 100
@@ -780,6 +797,10 @@ endsnippet
 snippet eps "Sub Paragraph*" wi
 \epsilon$1 $0
 endsnippet
+
+snippet rho "Sub Paragraph*" wi
+\rho$1 $0
+endsnippet
 #Capital greek letters
 
 
@@ -826,4 +847,8 @@ endsnippet
 
 snippet Eps "Sub Paragraph*" wi
 \Epsilon$1 $0
+endsnippet
+
+snippet Rho "Sub Paragraph*" wi
+\Rho$1 $0
 endsnippet
