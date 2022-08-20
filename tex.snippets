@@ -139,12 +139,19 @@ snippet lm "Math" wA
 \end{equation} $0
 endsnippet
 
-snippet ali "Align" bA
+snippet alig "Align" bA
+\begin{align}
+	\begin{split}
+		${1:${VISUAL}}
+	\end{split}
+\end{align}
+endsnippet
+
+snippet alik "Align" bA
 \begin{align*}
 	${1:${VISUAL}}
 .\end{align*}
 endsnippet
-
 
 context "math()"
 snippet // "Fraction" iA
@@ -177,6 +184,21 @@ snip.rv = stripped[0:i] + "\\frac{" + stripped[i+1:-1] + "}"
 endsnippet
 
 context "math()"
+snippet '([A-Za-z])x' "subscript x" wrA
+`!p snip.rv = match.group(1)`_x
+endsnippet
+
+context "math()"
+snippet '([A-Za-z])y' "subscript y" wrA
+`!p snip.rv = match.group(1)`_y
+endsnippet
+
+context "math()"
+snippet '([A-Za-z])z' "subscript z" wrA
+`!p snip.rv = match.group(1)`_z
+endsnippet
+
+context "math()"
 snippet '([A-Za-z])(\d)' "auto subscript" wrA
 `!p snip.rv = match.group(1)`_`!p snip.rv = match.group(2)`
 endsnippet
@@ -195,7 +217,7 @@ snippet "\|(.*?)\>" "ket" wri
 endsnippet
 
 snippet "(.*)(?i)\\bra{(.*?)}([^\|]*?)\>" "Partial braket" Awri
-`!p snip.rv = match.group(1)`\braket{`!p snip.rv = match.group(2)`}{`!p snip.rv = match.group(3).replace('q', f'\psi').replace('f', f'\phi')`}
+`!p snip.rv = match.group(1)`\braket{`!p snip.rv = match.group(2)`|`!p snip.rv = match.group(3).replace('q', f'\psi').replace('f', f'\phi')`}
 endsnippet
 
 snippet "(.*)(?i)\\bra{(.*?)}(.*?)\|([^\|]*?)\>" "Full Bracket with middle" Awri
@@ -302,6 +324,10 @@ snippet lr[ "left[ right]" i
 \left[ ${1:${VISUAL}} \right] $0
 endsnippet
 
+snippet lr< "leftangle rightangle" iA
+\left<${1:${VISUAL}} \right>$0
+endsnippet
+
 snippet lra "leftangle rightangle" iA
 \left<${1:${VISUAL}} \right>$0
 endsnippet
@@ -362,6 +388,11 @@ endsnippet
 context "math()"
 snippet ter "Term with Lund notation atomic theory" iA
 \ {}^{$1}$0
+endsnippet
+
+context "math()"
+snippet tem "Term with Lund notation atomic theory but with no spacing" iA
+{}^{$1}$0
 endsnippet
 
 context "math()"
@@ -468,6 +499,8 @@ context "math()"
 snippet xmm "x" iA
 x_{m}
 endsnippet
+
+
 
 snippet R0+ "R0+" iA
 \\R_0^+
@@ -583,6 +616,10 @@ snippet << "<<" iA
 \ll
 endsnippet
 
+#context "math()"
+#snippet pm "plus minus" iA
+#\pm
+#endsnippet
 
 snippet ~~ "~" iA
 \sim 
@@ -603,6 +640,7 @@ snippet cc "subset" Ai
 \subset 
 endsnippet
 
+context "math()"
 snippet notin "not in " iA
 \not\in 
 endsnippet
@@ -662,6 +700,11 @@ endsnippet
 
 snippet bf "Bold" wi
 \textbf{${1:${VISUAL}}}$0
+endsnippet
+
+context "math()"
+snippet bfs "math bold" iA
+\boldsymbol{${1:${VISUAL}}}$0
 endsnippet
 
 snippet it "Italic" wi
@@ -749,10 +792,33 @@ endsnippet
 
 # vim:ft=snippets
 
+##################
+#  Latex-Beamer  #
+##################
 
-#########
-#Greek letters
-#########
+snippet frame "beamer frame" wi
+\frame{
+	\frametitle{$1}
+	$0
+}
+endsnippet
+
+snippet cols "columns" iA
+\begin{columns}
+	$0
+\end{columns}
+endsnippet
+
+snippet col "column" iA
+\begin{column}{${1:}\textwidth}
+	$0
+\end{column}{$1}
+endsnippet
+
+###################
+#  Greek letters  #
+###################
+
 
 snippet lam "Sub Paragraph*" wi
 \lambda$1 $0
@@ -800,6 +866,18 @@ endsnippet
 
 snippet rho "Sub Paragraph*" wi
 \rho$1 $0
+endsnippet
+
+snippet kap "Sub Paragraph*" wi
+\kappa$1 $0
+endsnippet
+
+snippet chi "Sub Paragraph*" wi
+\chi$1 $0
+endsnippet
+
+snippet the "Sub Paragraph*" wi
+\theta$1 $0
 endsnippet
 #Capital greek letters
 
@@ -851,4 +929,16 @@ endsnippet
 
 snippet Rho "Sub Paragraph*" wi
 \Rho$1 $0
+endsnippet
+
+snippet Kap "Sub Paragraph*" wi
+\Kappa$1 $0
+endsnippet
+
+snippet Chi "Sub Paragraph*" wi
+\Chi$1 $0
+endsnippet
+
+snippet The "Sub Paragraph*" wi
+\Theta$1 $0
 endsnippet
