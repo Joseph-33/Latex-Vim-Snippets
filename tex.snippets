@@ -183,20 +183,20 @@ snip.rv = stripped[0:i] + "\\frac{" + stripped[i+1:-1] + "}"
 `{$1}$0
 endsnippet
 
-context "math()"
-snippet '([A-Za-z])x' "subscript x" wrA
-`!p snip.rv = match.group(1)`_x
-endsnippet
+#context "math()"
+#snippet '([A-Za-z])x' "subscript x" wrA
+#`!p snip.rv = match.group(1)`_x
+#endsnippet
 
-context "math()"
-snippet '([A-Za-z])y' "subscript y" wrA
-`!p snip.rv = match.group(1)`_y
-endsnippet
-
-context "math()"
-snippet '([A-Za-z])z' "subscript z" wrA
-`!p snip.rv = match.group(1)`_z
-endsnippet
+#context "math()"
+#snippet '([A-Za-z])y' "subscript y" wrA
+#`!p snip.rv = match.group(1)`_y
+#endsnippet
+#
+#context "math()"
+#snippet '([A-Za-z])z' "subscript z" wrA
+#`!p snip.rv = match.group(1)`_z
+#endsnippet
 
 context "math()"
 snippet '([A-Za-z])(\d)' "auto subscript" wrA
@@ -626,6 +626,11 @@ snippet ~~ "~" iA
 endsnippet
 
 context "math()"
+snippet apr "approx" iA
+\approx $0
+endsnippet
+
+context "math()"
 snippet set "set" wA
 \\{$1\\} $0
 endsnippet
@@ -733,6 +738,7 @@ snippet case "cases" wA
 \end{cases}
 endsnippet
 
+context "math()"
 snippet SI "SI" iA
 \SI{$1}{$2}
 endsnippet
@@ -824,126 +830,155 @@ endsnippet
 #  Greek letters  #
 ###################
 
-
-snippet lam "Sub Paragraph*" wi
-\lambda$1 $0
+context "math()"
+snippet lam "Sub Paragraph*" iA
+\lambda $0
 endsnippet
 
-snippet del "Sub Paragraph*" wi
-\delta$1 $0
+context "math()"
+snippet del "Sub Paragraph*" iA
+\delta $0
 endsnippet
 
-snippet sig "Sub Paragraph*" wi
-\sigma$1 $0
+context "math()"
+snippet sig "Sub Paragraph*" iA
+\sigma $0
 endsnippet
 
-snippet mu "Sub Paragraph*" wi
-\mu$1 $0
+context "math()"
+snippet mu "Sub Paragraph*" iA
+\mu $0
 endsnippet
 
-snippet nu "Sub Paragraph*" wi
-\nu$1 $0
+context "math()"
+snippet nu "Sub Paragraph*" iA
+\nu $0
 endsnippet
 
-snippet gam "Sub Paragraph*" wi
-\gamma$1 $0
+context "math()"
+snippet gam "Sub Paragraph*" iA
+\gamma $0
 endsnippet
 
-snippet alp "Sub Paragraph*" wi
-\alpha$1 $0
+context "math()"
+snippet alp "Sub Paragraph*" iA
+\alpha $0
 endsnippet
 
-snippet bet "Sub Paragraph*" wi
-\beta$1 $0
+context "math()"
+snippet bet "Sub Paragraph*" iA
+\beta $0
 endsnippet
 
-snippet psi "Sub Paragraph*" wi
-\psi$1 $0
+context "math()"
+snippet psi "Sub Paragraph*" iA
+\psi $0
 endsnippet
 
-snippet phi "Sub Paragraph*" wi
-\phi$1 $0
+context "math()"
+snippet phi "Sub Paragraph*" iA
+\phi $0
 endsnippet
 
-snippet eps "Sub Paragraph*" wi
-\epsilon$1 $0
+context "math()"
+snippet eps "Sub Paragraph*" iA
+\epsilon $0
 endsnippet
 
-snippet rho "Sub Paragraph*" wi
-\rho$1 $0
+context "math()"
+snippet rho "Sub Paragraph*" iA
+\rho $0
 endsnippet
 
-snippet kap "Sub Paragraph*" wi
-\kappa$1 $0
+context "math()"
+snippet kap "Sub Paragraph*" iA
+\kappa $0
 endsnippet
 
-snippet chi "Sub Paragraph*" wi
-\chi$1 $0
+context "math()"
+snippet chi "Sub Paragraph*" iA
+\chi $0
 endsnippet
 
-snippet the "Sub Paragraph*" wi
-\theta$1 $0
+context "math()"
+snippet the "Sub Paragraph*" iA
+\theta $0
 endsnippet
 #Capital greek letters
 
 
 
-snippet Lam "Sub Paragraph*" wi
-\Lambda$1 $0
+context "math()"
+snippet Lam "Sub Paragraph*" iA
+\Lambda $0
 endsnippet
 
-snippet Del "Sub Paragraph*" wi
-\Delta$1 $0
+context "math()"
+snippet Del "Sub Paragraph*" iA
+\Delta $0
 endsnippet
 
-snippet Sig "Sub Paragraph*" wi
-\Sigma$1 $0
+context "math()"
+snippet Sig "Sub Paragraph*" iA
+\Sigma $0
 endsnippet
 
-snippet Mu "Sub Paragraph*" wi
-\Mu$1 $0
+context "math()"
+snippet Mu "Sub Paragraph*" iA
+\Mu $0
 endsnippet
 
-snippet Nu "Sub Paragraph*" wi
-\Nu$1 $0
+context "math()"
+snippet Nu "Sub Paragraph*" iA
+\Nu $0
 endsnippet
 
-snippet Gam "Sub Paragraph*" wi
-\Gamma$1 $0
+context "math()"
+snippet Gam "Sub Paragraph*" iA
+\Gamma $0
 endsnippet
 
-snippet Alp "Sub Paragraph*" wi
-\Alpha$1 $0
+context "math()"
+snippet Alp "Sub Paragraph*" iA
+\Alpha $0
 endsnippet
 
-snippet Bet "Sub Paragraph*" wi
-\Beta$1 $0
+context "math()"
+snippet Bet "Sub Paragraph*" iA
+\Beta $0
 endsnippet
 
-snippet Psi "Sub Paragraph*" wi
-\Psi$1 $0
+context "math()"
+snippet Psi "Sub Paragraph*" iA
+\Psi $0
 endsnippet
 
-snippet Phi "Sub Paragraph*" wi
-\Phi$1 $0
+context "math()"
+snippet Phi "Sub Paragraph*" iA
+\Phi $0
 endsnippet
 
-snippet Eps "Sub Paragraph*" wi
-\Epsilon$1 $0
+context "math()"
+snippet Eps "Sub Paragraph*" iA
+\Epsilon $0
 endsnippet
 
-snippet Rho "Sub Paragraph*" wi
-\Rho$1 $0
+context "math()"
+snippet Rho "Sub Paragraph*" iA
+\Rho $0
 endsnippet
 
-snippet Kap "Sub Paragraph*" wi
-\Kappa$1 $0
+context "math()"
+snippet Kap "Sub Paragraph*" iA
+\Kappa $0
 endsnippet
 
-snippet Chi "Sub Paragraph*" wi
-\Chi$1 $0
+context "math()"
+snippet Chi "Sub Paragraph*" iA
+\Chi $0
 endsnippet
 
-snippet The "Sub Paragraph*" wi
-\Theta$1 $0
+context "math()"
+snippet The "Sub Paragraph*" wA
+\Theta $0
 endsnippet
