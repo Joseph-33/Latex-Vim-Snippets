@@ -15,8 +15,8 @@ endglobal
 snippet template "Basic template" b
 \documentclass[11pt]{article}
 \usepackage{amsmath, amssymb}
-\usepackage{cite}
-\usepackage{natbib}
+%\usepackage{cite}
+\usepackage[square,sort,comma,numbers]{natbib}
 \usepackage{graphicx}
 \usepackage[a4paper, total={6.2in, 8.5in}]{geometry}
 \usepackage[stretch=10]{microtype}
@@ -47,7 +47,12 @@ snippet template "Basic template" b
 \author{Joseph Andrews}
 \begin{document}
 \maketitle
+
 	
+%\bibliography{bib.bib}{}
+%\bibliographystyle{plainnat}
+%\bibliographystyle{aip}
+%\bibliographystyle{plain}
 \end{document}
 endsnippet
 
