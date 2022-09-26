@@ -17,6 +17,7 @@ snippet template "Basic template" b
 \usepackage{amsmath, amssymb}
 %\usepackage{cite}
 \usepackage[square,sort,comma,numbers]{natbib}
+\usepackage[version=4]{mhchem}
 \usepackage{graphicx}
 \usepackage[a4paper, total={6.2in, 8.5in}]{geometry}
 \usepackage[stretch=10]{microtype}
@@ -50,7 +51,7 @@ snippet template "Basic template" b
 
 	
 %\bibliography{bib.bib}{}
-%\bibliographystyle{plainnat}
+%\bibliographystyle{unsrtnat}
 %\bibliographystyle{aip}
 %\bibliographystyle{plain}
 \end{document}
@@ -391,6 +392,11 @@ snippet fr "Function of r" iA
 endsnippet
 
 context "math()"
+snippet iso "Allows for a description of a nucleus" iA
+\ce{^{${1:}}_{${2:}}${3:}} $0
+endsnippet
+
+context "math()"
 snippet ter "Term with Lund notation atomic theory" iA
 \ {}^{$1}$0
 endsnippet
@@ -713,7 +719,7 @@ snippet bf "Bold" wi
 endsnippet
 
 context "math()"
-snippet bf "Bold" wi
+snippet bf "Bold" iA
 \boldsymbol{${1:${VISUAL}}}$0
 endsnippet
 
@@ -771,6 +777,11 @@ endsnippet
 #\overline{`!p snip.rv=match.group(1)`}
 #endsnippet
 
+context "math()"
+snippet "hba" "hbar" riA
+\hbar $0
+endsnippet
+
 priority 10
 context "math()"
 snippet "hat" "hat" riA
@@ -804,6 +815,10 @@ endsnippet
 
 snippet ref "ref" wi
 \ref{${1:${VISUAL}}}$0
+endsnippet
+
+snippet cite "cite" wi
+\cite{${1:${VISUAL}}}$0
 endsnippet
 
 # vim:ft=snippets
