@@ -94,6 +94,11 @@ snippet enum "Enumerate" bA
 \end{enumerate}
 endsnippet
 
+snippet nijm "New item" Ai
+
+\item $0
+endsnippet
+
 snippet item "Itemize" bi
 \begin{itemize}
 	\item $0
@@ -390,6 +395,11 @@ context "math()"
 snippet fr "Function of r" iA
 ( r )$0
 endsnippet
+
+#context "math()"
+#snippet e- "Electron equation" iA
+#e^{-1} $0
+#endsnippet
 
 context "math()"
 snippet iso "Allows for a description of a nucleus" iA
@@ -924,6 +934,11 @@ context "math()"
 snippet the "Sub Paragraph*" iA
 \theta $0
 endsnippet
+
+context "math()"
+snippet ome "Sub Paragraph*" wA
+\ome $0
+endsnippet
 #Capital greek letters
 
 
@@ -1001,4 +1016,9 @@ endsnippet
 context "math()"
 snippet The "Sub Paragraph*" wA
 \Theta $0
+endsnippet
+
+context "math()"
+snippet Ome "Sub Paragraph*" wA
+\Ome $0
 endsnippet
