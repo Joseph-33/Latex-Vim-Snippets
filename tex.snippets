@@ -12,6 +12,55 @@ def env(name):
 endglobal
 
 
+snippet logtemplate "Template for logs" b
+\documentclass[9pt]{article}
+\usepackage{multicol}
+\usepackage{amsmath, amssymb}
+\usepackage[square,sort,comma,numbers]{natbib}
+\usepackage[version=4]{mhchem}
+\usepackage{graphicx}
+\usepackage[a4paper, total={7.4in, 9.5in}]{geometry}
+\usepackage[stretch=10]{microtype}
+\usepackage{graphicx}
+\usepackage{siunitx}
+\usepackage{xcolor}
+\usepackage{braket}
+\usepackage{hyperref}
+\hypersetup{colorlinks,linkcolor={red!50!black},citecolor={blue!60!black},urlcolor={blue!0!black}}
+\usepackage{graphicx}
+
+\graphicspath{ {./Images/} }
+
+\usepackage{import}
+\usepackage{xifthen}
+%\pdfminorversion=7
+\usepackage{pdfpages}
+\usepackage{transparent}
+\newcommand{\incfig}[1]{%
+	\def\svgwidth{\columnwidth}
+	\import{./figures/}{#1.pdf_tex}
+}
+
+\pdfsuppresswarningpagegroup=1
+
+
+\title{$2}
+\author{Joseph S. Andrews}
+\begin{document}
+\date{$1}
+\maketitle
+
+\begin{multicols}{2}
+\input{logs}
+\end{multicols}$0
+	
+%\bibliography{../../bib.bib}{}
+%\bibliographystyle{unsrtnat}
+%\bibliographystyle{aip}
+%\bibliographystyle{plain}
+\end{document}
+endsnippet
+
 snippet template "Basic template" b
 \documentclass[10pt]{article}
 \usepackage{amsmath, amssymb}
