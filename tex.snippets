@@ -956,6 +956,25 @@ snippet sf "Stephan Fritzsche" i
 \sf{$1}$0
 endsnippet
 
+snippet jg "Jon Grumer" i
+\jg{$1}$0
+endsnippet
+
+snippet ja "me" i
+\ja{$1}$0
+endsnippet
+
+global !p
+def jg_replacement(match):
+	content = match.group(1) # Captures the content within the braces
+	return r'\jsg{' + content + '}'
+endglobal
+
+priority -1
+snippet "\{([^\{\}]*)\}jgr" "Custom jgr replacement" r
+`!p snip.rv = jg_replacement(match)`\jg{$1}$0
+endsnippet
+
 #################
 #  Supervisors   #
 #################
