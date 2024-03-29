@@ -131,9 +131,9 @@ endsnippet
 snippet fig "Figure environment" b
 \begin{figure}[${1:htpb}]
 	\centering
-	${2:\includegraphics[width=0.8\textwidth]{$3}}
-	\caption{${4:$3}}
-	\label{fig:${5:${3/\W+.*//g}}}
+	${2:\includegraphics[width=\linewidth]{$3}}
+	\caption{${4:${3/_/-/g}}}
+	\label{fig:${5:${3/^[^\/]*\///g}}}
 \end{figure}
 endsnippet
 
@@ -188,13 +188,13 @@ endsnippet
 
 snippet dm "Math" wA
 \begin{equation}
-        ${1:${VISUAL}}
+	${1:${VISUAL}}
 \end{equation} $0
 endsnippet
 
 snippet lm "Math" wA
 \begin{equation}
-        ${2:${VISUAL}}
+	${2:${VISUAL}}
 	\label{$1}
 \end{equation} $0
 endsnippet
@@ -268,6 +268,16 @@ snippet '([A-Za-z])_(\d\d)' "auto subscript2" wrA
 `!p snip.rv = match.group(1)`_{`!p snip.rv = match.group(2)`}
 endsnippet
 
+#context "math()"
+#snippet '([A-Za-z])(ss)' "superscript" wri
+#`!p snip.rv = match.group(1)`^{$1}$0
+#endsnippet
+
+context "math()"
+snippet 'ss' "superscript" wri
+^{$1}$0
+endsnippet
+
 snippet "\<(.*?)\|" "bra" wri
 \bra{`!p snip.rv = match.group(1).replace('q', f'\psi').replace('f', f'\phi')`}
 endsnippet
@@ -275,15 +285,16 @@ endsnippet
 snippet "\|(.*?)\>" "ket" wri
 \ket{`!p snip.rv = match.group(1).replace('q', f'\psi').replace('f', f'\phi')`}
 endsnippet
+#
+#snippet "(.*)(?i)\\bra{(.*?)}([^\|]*?)\>" "Partial braket" Awri
+#`!p snip.rv = match.group(1)`\braket{`!p snip.rv = match.group(2)`|`!p snip.rv = match.group(3).replace('q', f'\psi').replace('f', f'\phi')`}
+#endsnippet
 
-snippet "(.*)(?i)\\bra{(.*?)}([^\|]*?)\>" "Partial braket" Awri
-`!p snip.rv = match.group(1)`\braket{`!p snip.rv = match.group(2)`|`!p snip.rv = match.group(3).replace('q', f'\psi').replace('f', f'\phi')`}
-endsnippet
-
-snippet "(.*)(?i)\\bra{(.*?)}(.*?)\|([^\|]*?)\>" "Full Bracket with middle" Awri
-`!p snip.rv = match.group(1)`\braket{`!p snip.rv = match.group(2)` | `!p snip.rv = match.group(3).replace('q', f'\psi').replace('f', f'\phi')` | `!p snip.rv = match.group(4).replace('q', f'\psi').replace('f', f'\phi')`}
-endsnippet
-
+#snippet "(.*)(?i)\\bra{(.*?)}(.*?)\|([^\|]*?)\>" "Full Bracket with middle" Awri
+#`!p snip.rv = match.group(1)`\braket{`!p snip.rv = match.group(2)` | `!p snip.rv = match.group(3).replace('q', f'\psi').replace('f', f'\phi')` | `!p snip.rv = match.group(4).replace('q', f'\psi').replace('f', f'\phi')`}
+#endsnippet
+#
+context "math()"
 snippet "(.*)\<(.*?)\|(.*?)\|([^\|]*?)\>" "Braket that doesn't require a bra alerady" Awri
 `!p snip.rv = match.group(1)`\braket{`!p snip.rv = match.group(2).replace('q', f'\psi').replace('f', f'\phi')` | `!p snip.rv = match.group(3).replace('q', f'\psi').replace('f', f'\phi')` | `!p snip.rv = match.group(4).replace('q', f'\psi').replace('f', f'\phi')`}
 endsnippet
@@ -292,37 +303,37 @@ context "math()"
 snippet '([A-Za-z])dag' "dagger" Awri
 `!p snip.rv = match.group(1)`^{\dag}
 endsnippet
-
-snippet sympy "sympyblock " w
-sympy $1 sympy$0
-endsnippet
-
-priority 10000
-snippet 'sympy(.*)sympy' "sympy" wr
-`!p
-from sympy import *
-x, y, z, t = symbols('x y z t')
-k, m, n = symbols('k m n', integer=True)
-f, g, h = symbols('f g h', cls=Function)
-init_printing()
-snip.rv = eval('latex(' + match.group(1).replace('\\', '').replace('^', '**').replace('{', '(').replace('}', ')') + ')')
-`
-endsnippet
-
-priority 1000
-snippet math "mathematicablock" w
-math $1 math$0
-endsnippet
-
-priority 10000
-snippet 'math(.*)math' "math" wr
-`!p
-import subprocess
-code = match.group(1)
-code = 'ToString[' + code + ', TeXForm]'
-snip.rv = subprocess.check_output(['wolframscript', '-code', code])
-`
-endsnippet
+#
+#snippet sympy "sympyblock " w
+#sympy $1 sympy$0
+#endsnippet
+#
+#priority 10000
+#snippet 'sympy(.*)sympy' "sympy" wr
+#`!p
+#from sympy import *
+#x, y, z, t = symbols('x y z t')
+#k, m, n = symbols('k m n', integer=True)
+#f, g, h = symbols('f g h', cls=Function)
+#init_printing()
+#snip.rv = eval('latex(' + match.group(1).replace('\\', '').replace('^', '**').replace('{', '(').replace('}', ')') + ')')
+#`
+#endsnippet
+#
+#priority 1000
+#snippet math "mathematicablock" w
+#math $1 math$0
+#endsnippet
+#
+#priority 10000
+#snippet 'math(.*)math' "math" wr
+#`!p
+#import subprocess
+#code = match.group(1)
+#code = 'ToString[' + code + ', TeXForm]'
+#snip.rv = subprocess.check_output(['wolframscript', '-code', code])
+#`
+#endsnippet
 
 snippet == "equals" iA
 &= $1 \\\\
@@ -451,13 +462,33 @@ endsnippet
 #endsnippet
 
 context "math()"
-snippet iso "Allows for a description of a nucleus" iA
+snippet iso "Allows for a description of a nucleus" 
 \ce{^{${1:}}_{${2:}}${3:}} $0
 endsnippet
 
 context "math()"
-snippet ter "Term with Lund notation atomic theory" iA
-\ {}^{$1}$0
+snippet ter "Non-compressed Term with Lund notation atomic theory" 
+\ {}^{$2}$1
+endsnippet
+
+context "math()"
+snippet cte "Compressed Term with Lund notation atomic theory" 
+~^{$1} \! $2_{$3}
+endsnippet
+
+context "math()"
+snippet '(\d+)([spdfgh])(\^(?:\{)?\d+(?:\})?)?' "Compressed configuration" r
+`!p snip.rv = match.group(1)`\!`!p snip.rv = match.group(2) + (match.group(3) if match.group(3) else "")` $0
+endsnippet
+
+context "math()"
+snippet '(\d+)\s\/(\d+)' "Compressed fraction" ir
+`!p snip.rv = match.group(1)`\!/\!`!p snip.rv = match.group(2)` $0
+endsnippet
+
+context "math()"
+snippet nn "Term with Lund notation atomic theory" w
+\nonumber $0
 endsnippet
 
 context "math()"
@@ -745,21 +776,21 @@ snippet nnn "bigcap" iA
 \bigcap_{${1:i \in ${2: I}}} $0
 endsnippet
 
-snippet OO "emptyset" iA
-\O
-endsnippet
-
-snippet RR "real" iA
-\R
-endsnippet
-
-snippet QQ "Q" iA
-\Q
-endsnippet
-
-snippet ZZ "Z" iA
-\Z
-endsnippet
+#snippet OO "emptyset" iA
+#\O
+#endsnippet
+#
+#snippet RR "real" iA
+#\R
+#endsnippet
+#
+#snippet QQ "Q" iA
+#\Q
+#endsnippet
+#
+#snippet ZZ "Z" iA
+#\Z
+#endsnippet
 
 snippet <! "normal" iA
 \triangleleft 
@@ -811,6 +842,10 @@ endsnippet
 context "math()"
 snippet SI "SI" iA
 \SI{$1}{$2}
+endsnippet
+
+snippet '(\d)cm' "Inverse cm" ir
+`!p snip.rv = match.group(1)`$\si{\centi \metre^{-1}}$
 endsnippet
 
 snippet bigfun "Big function" iA
@@ -872,12 +907,21 @@ snippet DD "D" iA
 \mathbb{D}
 endsnippet
 
+context "math()"
+snippet marm "Mathrm text mode" iA
+\mathrm{${1:${VISUAL}}}$0
+endsnippet
+
 snippet ref "ref" wi
 \ref{${1:${VISUAL}}}$0
 endsnippet
 
 snippet cite "cite" wi
 \cite{${1:${VISUAL}}}$0
+endsnippet
+
+snippet citet "citet" wi
+\citet{${1:${VISUAL}}}$0
 endsnippet
 
 # vim:ft=snippets
@@ -903,6 +947,29 @@ snippet col "column" wi
 \begin{column}{${1:}\textwidth}
 	$2
 \end{column}{$1}$0
+endsnippet
+#########################
+#  supervisor comments  #
+#########################
+
+snippet sf "Stephan Fritzsche" i
+\sf{$1}$0
+endsnippet
+
+#################
+#  Supervisors   #
+#################
+
+snippet Bieron "Jacek Bieron" i
+Bieroń 
+endsnippet
+
+snippet Krakow "Krakow" i
+Kraków 
+endsnippet
+
+snippet uniJ "Uni Krakow" i
+Uniwersytet Jagielloński
 endsnippet
 
 ###################
@@ -1066,7 +1133,6 @@ context "math()"
 snippet The "Sub Paragraph*" wA
 \Theta $0
 endsnippet
-
 context "math()"
 snippet Ome "Sub Paragraph*" wA
 \Omega $0
