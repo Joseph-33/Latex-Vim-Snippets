@@ -882,15 +882,25 @@ endsnippet
 
 # vim:ft=snippets
 
+snippet ja "joseph" wi
+\ja{${1:${VISUAL}}}$0
+endsnippet
+
 ##################
 #  Latex-Beamer  #
 ##################
 
 snippet frame "beamer frame" wi
-\frame{
+\begin{frame}
 	\frametitle{$1}
 	$2
-}$0
+\end{frame}$0
+endsnippet
+
+snippet mcol "multicols" wi
+\begin{multicols}{2}
+	$1
+\end{multicols}$0
 endsnippet
 
 snippet cols "columns" wi
