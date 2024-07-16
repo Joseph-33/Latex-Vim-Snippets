@@ -117,6 +117,11 @@ snippet ... "ldots" iA
 \ldots
 endsnippet
 
+snippet sec "section" b
+\section{$1}
+$0
+endsnippet
+
 snippet table "Table environment" b
 \begin{table}[${1:htpb}]
 	\centering
@@ -468,7 +473,7 @@ endsnippet
 
 context "math()"
 snippet ter "Non-compressed Term with Lund notation atomic theory" 
-\ {}^{$2}$1
+\ {}^{$1}$0
 endsnippet
 
 context "math()"
@@ -1026,7 +1031,7 @@ snippet mu "Sub Paragraph*" iA
 endsnippet
 
 context "math()"
-snippet nu "Sub Paragraph*" iA
+snippet nu "Sub Paragraph*" i
 \nu $0
 endsnippet
 
