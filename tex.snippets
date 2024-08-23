@@ -349,7 +349,7 @@ snippet != "equals" iA
 endsnippet
 
 context "math()"
-snippet pro "equals" iA
+snippet pro "equals" i
 \propto $0
 endsnippet
 
@@ -975,10 +975,6 @@ snippet jg "Jon Grumer" i
 \jg{$1}$0
 endsnippet
 
-snippet ja "me" i
-\ja{$1}$0
-endsnippet
-
 global !p
 def jg_replacement(match):
 	content = match.group(1) # Captures the content within the braces
@@ -1004,6 +1000,52 @@ endsnippet
 
 snippet uniJ "Uni Krakow" i
 Uniwersytet Jagielloński
+endsnippet
+
+############
+#  Levels  #
+############
+
+snippet 7s8s "7s8s" i
+\$7\!s^2 8s ~^{2} \! S_{1\!/\!2 }$
+endsnippet
+
+snippet 7s7p "7s7p" i
+\$7\!s^2 7\!p ~^{2} \! P^{o}_{1\!/\!2}$
+endsnippet
+
+snippet 7s6d1 "7s6d1" i
+\$7\!s^2  6d  ~^{2} \! D_{3\!/\!2 }$
+endsnippet
+
+snippet 7s6d2 "7s6d2" i
+\$7\!s^2  6d  ~^{2} \! D_{5\!/\!2 }$
+endsnippet
+
+snippet 7s7d1 "7s7d1" i
+\$7\!s^2  7\!d  ~^{2} \! D_{3\!/\!2 }$
+endsnippet
+
+snippet 7s7d2 "7s7d2" i
+\$7\!s^2  7\!d  ~^{2} \! D_{5\!/\!2 }$
+endsnippet
+
+
+
+snippet 6s7s "6s7s" i
+\$6s^2 7\!s ~^{2} \! S_{1\!/\!2 }$
+endsnippet
+
+snippet 6s6p "6s6p" i
+\$6s^2 6p ~^{2} \! P^{o}_{1\!/\!2}$
+endsnippet
+
+snippet 6s5d1 "5s5d1" i
+\$6s^2  5d  ~^{2} \! D_{3\!/\!2 }$
+endsnippet
+
+snippet 6s5d2 "6s5d2" i
+\$6s^2  5d  ~^{2} \! D_{5\!/\!2 }$
 endsnippet
 
 ###################
