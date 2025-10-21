@@ -24,6 +24,7 @@ snippet logtemplate "Template for logs" b
 \usepackage{graphicx}
 \usepackage{siunitx}
 \usepackage{xcolor}
+\usepackage{bm}
 \usepackage{braket}
 \usepackage{hyperref}
 \hypersetup{colorlinks,linkcolor={red!50!black},citecolor={blue!60!black},urlcolor={blue!0!black}}
@@ -165,6 +166,12 @@ snippet desc "Description" b
 \end{description}
 endsnippet
 
+snippet quote "Quote" b
+\begin{quote}
+	$0
+\end{quote}
+endsnippet
+
 snippet pac "Package" b
 \usepackage[${1:options}]{${2:package}}$0
 endsnippet
@@ -191,6 +198,19 @@ else:
 `$2
 endsnippet
 
+snippet leq "labelless equation" wA
+\begin{equation*}
+    $1
+\end{equation*} $0
+endsnippet
+
+snippet beq "Math boxed equation" wA
+\begin{equation}
+\boxed{
+    $1    }$2
+\end{equation} $0
+endsnippet
+
 snippet dm "Math" wA
 \begin{equation}
 	${1:${VISUAL}}
@@ -214,8 +234,10 @@ endsnippet
 
 snippet alik "Align" bA
 \begin{align*}
-	${1:${VISUAL}}
-.\end{align*}
+	\begin{split}
+		${1:${VISUAL}}
+	\end{split}
+\end{align*}
 endsnippet
 
 context "math()"
@@ -376,6 +398,16 @@ snippet () "left( right)" iA
 \left( ${1:${VISUAL}} \right) $0
 endsnippet
 
+context "math()"
+snippet lb "bayesian ( | )" iA
+( ${1:${VISUAL}} | $2 ) $0
+endsnippet
+
+context "math()"
+snippet kj "( )" iA
+( ${1:${VISUAL}} ) $0
+endsnippet
+
 snippet lr "left( right)" i
 \left( ${1:${VISUAL}} \right) $0
 endsnippet
@@ -401,7 +433,7 @@ snippet lr[ "left[ right]" i
 endsnippet
 
 snippet lr< "leftangle rightangle" iA
-\left<${1:${VISUAL}} \right>$0
+\left\langle${1:${VISUAL}} \right\rangle$0
 endsnippet
 
 snippet lra "leftangle rightangle" iA
@@ -441,6 +473,10 @@ snippet difs "d/dx" w
 \frac{d^2 ${1:}}{d^2 ${2:}} $0
 endsnippet
 
+snippet par "partial" w
+\partial$0
+endsnippet
+
 snippet part "d/dx" w
 \frac{\partial ${1:}}{\partial ${2:}} $0
 endsnippet
@@ -473,6 +509,10 @@ endsnippet
 
 snippet epp "e- e+ pair production" 
 $e^+ e^-$ $0
+endsnippet
+
+snippet num "Non-compressed Term with Lund notation atomic theory"  i
+\num{$1}$0
 endsnippet
 
 context "math()"
@@ -556,6 +596,11 @@ snippet AA "forall" iA
 endsnippet
 
 context "math()"
+snippet ve "vec" iA
+\vec{$1}$0
+endsnippet
+
+context "math()"
 snippet xnn "xn" iA
 x_{n}
 endsnippet
@@ -578,6 +623,16 @@ endsnippet
 context "math()"
 snippet rij "rij" iA
 r_{ij}
+endsnippet
+
+context "math()"
+snippet nii "nii" iA
+n_{i}
+endsnippet
+
+context "math()"
+snippet njj "njj" iA
+n_{j}
 endsnippet
 
 context "math()"
@@ -667,6 +722,16 @@ snippet norm "norm" iA
 \|$1\|$0
 endsnippet
 
+context "math()"
+snippet var "var" i
+\text{Var}\!\left[ $1 \right] $0
+endsnippet
+
+context "math()"
+snippet cov "cov" i
+\textsc{cov}\!\left[ $1 \right] $0
+endsnippet
+
 priority 100
 context "math()"
 snippet '(?<!\\)(sin|cos|arccot|cot|csc|ln|log|exp|star|perp)' "ln" rwA
@@ -731,6 +796,11 @@ endsnippet
 #\pm
 #endsnippet
 
+context "math()"
+snippet sset "supset" iA
+\supset $0
+endsnippet
+
 snippet ~~ "~" iA
 \sim 
 endsnippet
@@ -785,10 +855,14 @@ snippet nnn "bigcap" iA
 \bigcap_{${1:i \in ${2: I}}} $0
 endsnippet
 
+snippet OO "emptyset" iA
+\emptyset
+endsnippet
+
 #snippet OO "emptyset" iA
 #\O
 #endsnippet
-#
+
 #snippet RR "real" iA
 #\R
 #endsnippet
@@ -818,12 +892,12 @@ snippet bf "Bold" wi
 endsnippet
 
 context "math()"
-snippet bf "Bold" iA
-\boldsymbol{${1:${VISUAL}}}$0
+snippet bm "Bold" iA
+\bm{${1:${VISUAL}}}$0
 endsnippet
 
 context "math()"
-snippet bft "math bold" iA
+snippet bf "math bold" iA
 \textbf{${1:${VISUAL}}}$0
 endsnippet
 
@@ -855,6 +929,10 @@ endsnippet
 
 snippet '(\d)cm' "Inverse cm" ir
 `!p snip.rv = match.group(1)`$\si{\centi \metre^{-1}}$
+endsnippet
+
+snippet '(\d)nm' "nanometres nm" ir
+`!p snip.rv = match.group(1)`$\si{\nano \metre}$
 endsnippet
 
 snippet bigfun "Big function" iA
@@ -930,7 +1008,7 @@ snippet cite "cite" wi
 endsnippet
 
 snippet citet "citet" wi
-\citet{${1:${VISUAL}}}$0
+\bcitet{${1:${VISUAL}}}$0
 endsnippet
 
 # vim:ft=snippets
@@ -1053,6 +1131,15 @@ snippet 6s5d2 "6s5d2" i
 endsnippet
 
 ###################
+#   Statistics    #
+###################
+
+context "math()"
+snippet dse "Sub Paragraph*" iA
+\mathds{E}${2:_{${1:p}(x)}} \left[ $3 \right] $0
+endsnippet
+
+###################
 #  Greek letters  #
 ###################
 
@@ -1135,6 +1222,12 @@ context "math()"
 snippet ome "Sub Paragraph*" wA
 \omega $0
 endsnippet
+
+context "math()"
+snippet tau "Sub Paragraph*" wA
+\tau $0
+endsnippet
+
 #Capital greek letters
 
 
@@ -1213,7 +1306,13 @@ context "math()"
 snippet The "Sub Paragraph*" wA
 \Theta $0
 endsnippet
+
 context "math()"
 snippet Ome "Sub Paragraph*" wA
 \Omega $0
+endsnippet
+
+context "math()"
+snippet xi "Sub Paragraph*" w
+\xi$0
 endsnippet
